@@ -1,0 +1,89 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    background-color: #333;
+  }
+  
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav ul li {
+    display: inline;
+    margin-right: 10px;
+  }
+  
+  nav ul li a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  nav ul li a:hover {
+    text-decoration: underline;
+  }
+
+
+#token-bars, #token-exchange {
+    padding: 20px;
+    text-align: center;
+}
+
+#click-token-bar, #scroll-token-bar, #total-tokens, #total-rupees {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#conversion-rates {
+    margin: 20px auto;
+    border-collapse: collapse;
+    width: 50%;
+}
+
+#conversion-rates th, #conversion-rates td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+#conversion-rates th {
+    background-color: #f2f2f2;
+}
+
+#content {
+    padding: 20px;
+    text-align: center;
+}
+
+.dummy-link {
+    display: block;
+    margin: 10px 0;
+    color: #007bff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.dummy-link:hover {
+    text-decoration: underline;
+}
