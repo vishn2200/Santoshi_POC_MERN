@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { TokenContext } from '../TokenContext';
 import './styles.css';
 
 const HomePage = () => {
-    const [clickTokens, setClickTokens] = useState(0);
-    const [scrollTokens, setScrollTokens] = useState(0);
+    const { clickTokens, setClickTokens, scrollTokens, setScrollTokens } = useContext(TokenContext);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -13,22 +14,33 @@ const HomePage = () => {
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, []);
+    }, [setScrollTokens]);
 
     return (
-        <div>
-            <div id="token-bars">
-                <div id="click-token-bar">Click Tokens: {clickTokens}</div>
-                <div id="scroll-token-bar">Scroll Tokens: {scrollTokens}</div>
+        <div className="container mt-4">
+            <div className="d-flex justify-content-around mb-4">
+                <div className="card p-3 text-center">
+                    <h5>Click Tokens</h5>
+                    <p className="display-4">{clickTokens}</p>
+                </div>
+                <div className="card p-3 text-center">
+                    <h5>Scroll Tokens</h5>
+                    <p className="display-4">{scrollTokens}</p>
+                </div>
             </div>
             <div id="content">
-                <a href="#" className="dummy-link" onClick={() => setClickTokens(clickTokens + 1)}>Dummy Link 1</a>
-                <a href="#" className="dummy-link" onClick={() => setClickTokens(clickTokens + 1)}>Dummy Link 2</a>
-                <a href="#" className="dummy-link" onClick={() => setClickTokens(clickTokens + 1)}>Dummy Link 3</a>
-                <a href="#" className="dummy-link" onClick={() => setClickTokens(clickTokens + 1)}>Dummy Link 4</a>
-                <a href="#" className="dummy-link" onClick={() => setClickTokens(clickTokens + 1)}>Dummy Link 5</a>
-                <p>Scroll down for more content...</p>
+                <div className="list-group">
+                    <Link to="#" className="list-group-item list-group-item-action" onClick={() => setClickTokens(clickTokens + 1)}>Dummy Link 1</Link>
+                    <Link to="#" className="list-group-item list-group-item-action" onClick={() => setClickTokens(clickTokens + 1)}>Dummy Link 2</Link>
+                    <Link to="#" className="list-group-item list-group-item-action" onClick={() => setClickTokens(clickTokens + 1)}>Dummy Link 3</Link>
+                    <Link to="#" className="list-group-item list-group-item-action" onClick={() => setClickTokens(clickTokens + 1)}>Dummy Link 4</Link>
+                    <Link to="#" className="list-group-item list-group-item-action" onClick={() => setClickTokens(clickTokens + 1)}>Dummy Link 5</Link>
+                </div>
                 <div style={{ height: '2000px' }}></div>
+                <div className="mt-4">
+                    <Link to="/page2" className="btn btn-primary mr-2">Go to Page 2</Link>
+                    <Link to="/page3" className="btn btn-secondary">Go to Page 3</Link>
+                </div>
             </div>
         </div>
     );

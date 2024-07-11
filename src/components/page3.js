@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+// import { Link } from 'react-router-dom';
+import { TokenContext } from '../TokenContext';
 import './styles.css';
 
 const Page3 = () => {
-    const [clickTokens, setClickTokens] = useState(50); // Example initial value
-    const [scrollTokens, setScrollTokens] = useState(100); // Example initial value
+    const { clickTokens, setClickTokens, scrollTokens, setScrollTokens } = useContext(TokenContext);  // Added setClickTokens and setScrollTokens
     const [manuallyAddedMoney, setManuallyAddedMoney] = useState(0);
     const [clickTokenRate, setClickTokenRate] = useState(0.1);
     const [scrollTokenRate, setScrollTokenRate] = useState(0.01);
@@ -46,15 +47,26 @@ const Page3 = () => {
     const totalMoney = (parseFloat(clickTokensValue) + parseFloat(scrollTokensValue) + manuallyAddedMoney).toFixed(2);
 
     return (
-        <div>
-            <div id="token-exchange">
-                <div id="click-tokens">Click Tokens: {clickTokens} ({clickTokensValue} INR)</div>
-                <div id="scroll-tokens">Scroll Tokens: {scrollTokens} ({scrollTokensValue} INR)</div>
-                <div id="total-rupees">Total Rupees: {totalMoney} INR</div>
-                <button id="withdraw-inr-button" onClick={handleWithdrawINR}>Withdraw in INR</button>
-                <button id="withdraw-stocks-button" onClick={handleWithdrawStocks}>Withdraw in Stocks</button>
-                <button id="add-money-button" onClick={handleAddMoney}>Add Money to Wallet</button>
-                <table id="conversion-rates">
+        <div className="container mt-4">
+            <div className="d-flex justify-content-around mb-4">
+                <div className="card p-3 text-center">
+                    <h5>Click Tokens</h5>
+                    <p className="display-4">{clickTokens} ({clickTokensValue} INR)</p>
+                </div>
+                <div className="card p-3 text-center">
+                    <h5>Scroll Tokens</h5>
+                    <p className="display-4">{scrollTokens} ({scrollTokensValue} INR)</p>
+                </div>
+                <div className="card p-3 text-center">
+                    <h5>Total Rupees</h5>
+                    <p className="display-4">{totalMoney} INR</p>
+                </div>
+            </div>
+            <div id="content">
+                <button className="btn btn-success mb-4" onClick={handleWithdrawINR}>Withdraw in INR</button>
+                <button className="btn btn-info mb-4" onClick={handleWithdrawStocks}>Withdraw in Stocks</button>
+                <button className="btn btn-warning mb-4" onClick={handleAddMoney}>Add Money to Wallet</button>
+                <table className="table">
                     <thead>
                         <tr>
                             <th>Token Type</th>
@@ -64,14 +76,15 @@ const Page3 = () => {
                     <tbody>
                         <tr>
                             <td>Click Token</td>
-                            <td id="click-token-rate">{clickTokenRate}</td>
+                            <td>{clickTokenRate}</td>
                         </tr>
                         <tr>
                             <td>Scroll Token</td>
-                            <td id="scroll-token-rate">{scrollTokenRate}</td>
+                            <td>{scrollTokenRate}</td>
                         </tr>
                     </tbody>
                 </table>
+                
             </div>
         </div>
     );
